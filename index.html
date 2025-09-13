@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriXvision - AI-Powered Crop Health Monitoring</title>
+    <meta name="description" content="Detect. Predict. Protect – Smarter Farming with AI. Monitor crop health, soil conditions, and pest risks using advanced multispectral imaging and AI technology.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- EmailJS for email functionality -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <i class="fas fa-leaf preloader-icon"></i>
+            <p>Loading AgriXvision...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-seedling"></i>
+                <span>AgriXvision</span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active" data-translate="nav.home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-translate="nav.about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#features" class="nav-link" data-translate="nav.features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#how-it-works" class="nav-link" data-translate="nav.howitworks">How It Works</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#impact" class="nav-link" data-translate="nav.impact">Impact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#demo" class="nav-link" data-translate="nav.demo">Demo</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-translate="nav.contact">Contact</a>
+                </li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="hi">हिं</button>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-translate="hero.title">AgriXvision</h1>
+            <p class="hero-tagline" data-translate="hero.tagline">Detect. Predict. Protect – Smarter Farming with AI</p>
+            <a href="#about" class="cta-button" data-translate="hero.cta">Learn More</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="about.title">About AgriXvision</h2>
+                <p data-translate="about.subtitle">Revolutionizing agriculture through AI-powered monitoring</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="problem-solution">
+                        <h3 data-translate="about.problem.title">The Challenge</h3>
+                        <p data-translate="about.problem.text">Farmers face increasing challenges with soil degradation, unpredictable pest outbreaks, and climate variability leading to significant crop losses and reduced yields.</p>
+                    </div>
+                    <div class="problem-solution">
+                        <h3 data-translate="about.solution.title">Our Solution</h3>
+                        <p data-translate="about.solution.text">AgriXvision uses advanced AI algorithms to analyze multispectral crop images and sensor data, providing real-time insights for disease detection, soil quality assessment, and pest risk prediction.</p>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI technology in agriculture">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="features.title">Key Features</h2>
+                <p data-translate="features.subtitle">Comprehensive AI-powered agricultural monitoring</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3 data-translate="features.disease.title">Crop Disease Detection</h3>
+                    <p data-translate="features.disease.text">Early identification of plant diseases using computer vision and machine learning algorithms.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 data-translate="features.soil.title">Soil Quality Prediction</h3>
+                    <p data-translate="features.soil.text">Advanced soil analysis to predict nutrient levels and recommend optimal fertilization strategies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3 data-translate="features.pest.title">Pest Risk Monitoring</h3>
+                    <p data-translate="features.pest.text">Proactive pest detection and risk assessment to prevent crop damage before it occurs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 data-translate="features.app.title">Multilingual Farmer App</h3>
+                    <p data-translate="features.app.text">User-friendly mobile application supporting multiple regional languages for easy adoption.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3 data-translate="features.iot.title">IoT Sensor Integration</h3>
+                    <p data-translate="features.iot.text">Real-time monitoring of soil moisture, temperature, humidity, and light levels through smart sensors.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h3 data-translate="features.weather.title">Weather Prediction</h3>
+                    <p data-translate="features.weather.text">AI-powered weather forecasting and climate analysis to optimize planting and harvesting schedules.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="howitworks.title">How It Works</h2>
+                <p data-translate="howitworks.subtitle">Simple steps to smarter farming</p>
+            </div>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 data-translate="howitworks.step1.title">Upload Crop Photo</h3>
+                        <p data-translate="howitworks.step1.text">Farmers capture and upload images of their crops using our mobile app.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 data-translate="howitworks.step2.title">AI Analysis</h3>
+                        <p data-translate="howitworks.step2.text">Advanced TensorFlow models analyze leaf patterns, soil data, and environmental factors.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 data-translate="howitworks.step3.title">Generate Predictions</h3>
+                        <p data-translate="howitworks.step3.text">AI generates real-time predictions for disease, soil health, and pest risks.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 data-translate="howitworks.step4.title">Get Recommendations</h3>
+                        <p data-translate="howitworks.step4.text">Farmers receive actionable recommendations via mobile app notifications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="impact.title">Our Impact</h2>
+                <p data-translate="impact.subtitle">Transforming agriculture for a sustainable future</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-translate="impact.yield.title">Higher Yield</h3>
+                    <p data-translate="impact.yield.text">Early detection leads to 25% increase in crop yields through timely intervention.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <span class="rupee-symbol">₹</span>
+                    </div>
+                    <h3 data-translate="impact.cost.title">Lower Costs</h3>
+                    <p data-translate="impact.cost.text">Optimized fertilizer and water usage reduces input costs by up to 30%.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 data-translate="impact.eco.title">Eco-friendly Farming</h3>
+                    <p data-translate="impact.eco.text">Reduced pesticide usage promotes sustainable and environmentally friendly agriculture.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-translate="impact.empower.title">Empowered Farmers</h3>
+                    <p data-translate="impact.empower.text">Smart advisory services empower farmers with data-driven decision making.</p>
+                </div>
+            </div>
+            <div class="impact-note">
+                <p data-translate="impact.note">Aligned with Digital Agriculture Mission & UN Sustainable Development Goals</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="demo.title">Try Our Demo</h2>
+                <p data-translate="demo.subtitle">Experience AI-powered crop analysis</p>
+            </div>
+            <div class="demo-container">
+                <div class="demo-upload">
+                    <div class="upload-area" id="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p data-translate="demo.upload.text">Upload a leaf image to analyze</p>
+                        <button class="upload-btn" data-translate="demo.upload.btn">Choose File</button>
+                        <input type="file" id="file-input" accept="image/*" class="file-input-hidden" title="Upload image file" aria-label="Upload image file">
+                    </div>
+                    <div class="demo-actions">
+                        <button class="demo-btn" id="analyze-default" data-translate="demo.analyze.default">Analyze Sample Image</button>
+                        <button class="demo-btn secondary" id="analyze-empty" data-translate="demo.analyze.empty">Show Analysis Capabilities</button>
+                    </div>
+                </div>
+                <div class="demo-result" id="demo-result">
+                    <h3 data-translate="demo.result.title">Analysis Result</h3>
+                    <div class="result-content" id="result-content">
+                        <div class="result-item">
+                            <span class="result-label" data-translate="demo.result.disease">Disease Detected:</span>
+                            <span class="result-value" id="disease-value">Leaf Spot Disease</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label" data-translate="demo.result.confidence">Confidence:</span>
+                            <span class="result-value" id="confidence-value">92%</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label" data-translate="demo.result.recommendation">Recommendation:</span>
+                            <span class="result-value" id="recommendation-value">Apply organic copper-based fungicide spray</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label" data-translate="demo.result.severity">Severity:</span>
+                            <span class="result-value" id="severity-value">Moderate</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label" data-translate="demo.result.treatment">Treatment:</span>
+                            <span class="result-value" id="treatment-value">Apply copper-based fungicide spray</span>
+                        </div>
+                    </div>
+                    <div class="analysis-actions">
+                        <button class="action-btn" id="download-pdf" data-translate="demo.actions.download">Download PDF Report</button>
+                        <button class="action-btn" id="share-results" data-translate="demo.actions.share">Share Results</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section id="audience" class="audience">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="audience.title">Who We Serve</h2>
+                <p data-translate="audience.subtitle">Empowering diverse agricultural stakeholders</p>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 data-translate="audience.farmers.title">Farmers</h3>
+                    <p data-translate="audience.farmers.text">Individual and small-scale farmers seeking to optimize their crop production and reduce losses.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 data-translate="audience.agronomists.title">Agronomists</h3>
+                    <p data-translate="audience.agronomists.text">Agricultural experts and consultants providing advisory services to farming communities.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 data-translate="audience.researchers.title">Researchers</h3>
+                    <p data-translate="audience.researchers.text">Agricultural researchers and institutions studying crop health and soil conditions.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 data-translate="audience.fpos.title">FPOs</h3>
+                    <p data-translate="audience.fpos.text">Farmer Producer Organizations supporting collective farming and market access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Go-to-Market Section -->
+    <section id="market" class="market">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="market.title">Our Business Model</h2>
+                <p data-translate="market.subtitle">Scalable solutions for sustainable growth</p>
+            </div>
+            <div class="market-grid">
+                <div class="market-card">
+                    <div class="market-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 data-translate="market.freemium.title">Freemium Model</h3>
+                    <p data-translate="market.freemium.text">Basic features free for individual farmers, premium advanced analytics for enhanced productivity.</p>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 data-translate="market.b2b.title">B2B Partnerships</h3>
+                    <p data-translate="market.b2b.text">Strategic partnerships with FPOs, NGOs, and agricultural cooperatives for widespread adoption.</p>
+                </div>
+                <div class="market-card">
+                    <div class="market-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3 data-translate="market.gov.title">Government Integration</h3>
+                    <p data-translate="market.gov.text">Integration with government agricultural policies and Digital India initiatives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="contact.title">Get In Touch</h2>
+                <p data-translate="contact.subtitle">Join us in revolutionizing agriculture</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name" data-translate="contact.form.name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email" data-translate="contact.form.email">Email Address</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="mobile-input-container">
+                                <span class="country-code">+91</span>
+                                <input type="tel" id="mobile" name="mobile" required maxlength="10" pattern="[0-9]{10}">
+                                <label for="mobile" data-translate="contact.form.mobile">Mobile Number</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message" data-translate="contact.form.message">Your Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn" data-translate="contact.form.submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-illustration">
+                        <img src="https://img.freepik.com/premium-photo/mobile-app-connecting-farmers-wallpaper_987764-31426.jpg?w=996" alt="Mobile app connecting farmers">
+                    </div>
+                    <div class="contact-details">
+                        <h3 data-translate="contact.details.title">Let's Collaborate</h3>
+                        <p data-translate="contact.details.text">Join us in building a sustainable future for agriculture through AI-powered solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; 2025 AgriXvision | <span data-translate="footer.empowering">Empowering Farmers</span></p>
+                </div>
+                <div class="footer-center">
+                    <ul class="footer-links">
+                        <li><a href="#home" data-translate="footer.home">Home</a></li>
+                        <li><a href="#features" data-translate="footer.features">Features</a></li>
+                        <li><a href="#contact" data-translate="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-right">
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top" title="Scroll to top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Email Configuration -->
+    <script src="email-config.js"></script>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
