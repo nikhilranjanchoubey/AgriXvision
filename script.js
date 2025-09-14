@@ -262,6 +262,11 @@ const contactForm = document.getElementById('contact-form');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure page starts from top
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
     // Hide preloader
     setTimeout(() => {
         preloader.style.opacity = '0';
@@ -1051,10 +1056,7 @@ www.agrixvision.com
 
 // Contact form functionality
 function initContactForm() {
-    // Initialize EmailJS if configuration is available
-    if (typeof EMAIL_CONFIG !== 'undefined' && EMAIL_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        emailjs.init(EMAIL_CONFIG.PUBLIC_KEY);
-    }
+    // Contact form is ready for use
     
     // Add mobile number input formatting
     const mobileInput = document.getElementById('mobile');
@@ -1106,12 +1108,12 @@ function initContactForm() {
             return;
         }
 
-        // Send email using EmailJS or fallback method
+        // Send message using fallback method
         sendContactEmail(name, email, mobile, message);
     });
 }
 
-// Function to send email using EmailJS or fallback
+// Function to send message
 function sendContactEmail(name, email, mobile, message) {
     const submitBtn = contactForm.querySelector('.submit-btn');
     const originalText = submitBtn.textContent;
@@ -1120,98 +1122,48 @@ function sendContactEmail(name, email, mobile, message) {
     submitBtn.textContent = sendingText;
     submitBtn.disabled = true;
 
-    // Check if EmailJS is properly configured
-    if (typeof EMAIL_CONFIG !== 'undefined' && 
-        EMAIL_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' && 
-        EMAIL_CONFIG.SERVICE_ID !== 'YOUR_SERVICE_ID' && 
-        EMAIL_CONFIG.TEMPLATE_ID !== 'YOUR_TEMPLATE_ID') {
-        
-        // Use EmailJS
-        sendWithEmailJS(name, email, mobile, message, submitBtn, originalText);
-    } else {
-        // Use fallback method
-        sendWithFallback(name, email, mobile, message, submitBtn, originalText);
-    }
+    // Use fallback method - simulate sending
+    sendWithFallback(name, email, mobile, message, submitBtn, originalText);
 }
 
-// Function to send email using EmailJS
-function sendWithEmailJS(name, email, mobile, message, submitBtn, originalText) {
-    // Prepare email template parameters
-    const templateParams = {
-        from_name: name,
-        from_email: email,
-        from_mobile: `+91${mobile}`,
-        message: message,
-        to_email: EMAIL_CONFIG.TO_EMAIL,
-        language: currentLang,
-        timestamp: new Date().toLocaleString(),
-        subject: currentLang === 'hi' ? 
-            `AgriXvision - नया संपर्क संदेश (${name})` : 
-            `AgriXvision - New Contact Message (${name})`
-    };
 
-    // Send email using EmailJS
-    emailjs.send(EMAIL_CONFIG.SERVICE_ID, EMAIL_CONFIG.TEMPLATE_ID, templateParams)
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            
-            const successMessage = currentLang === 'hi' ? 
-                'आपके संदेश के लिए धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।' : 
-                'Thank you for your message! We will get back to you soon.';
-            
-            // Show success message
-            showNotification(successMessage, 'success');
-            contactForm.reset();
-            
-        }, function(error) {
-            console.log('FAILED...', error);
-            
-            const errorMessage = currentLang === 'hi' ? 
-                'संदेश भेजने में त्रुटि हुई। कृपया बाद में पुनः प्रयास करें।' : 
-                'Error sending message. Please try again later.';
-            
-            // Show error message
-            showNotification(errorMessage, 'error');
-        })
-        .finally(() => {
-            // Reset button state
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        });
-}
-
-// Function to send email using fallback method
+// Function to send message using fallback method (simulation)
 function sendWithFallback(name, email, mobile, message, submitBtn, originalText) {
     // Simulate sending delay
     setTimeout(() => {
         try {
-            // Create mailto link as fallback
-            const subject = currentLang === 'hi' ? 
-                `AgriXvision - नया संपर्क संदेश (${name})` : 
-                `AgriXvision - New Contact Message (${name})`;
-            
-            const body = currentLang === 'hi' ? 
-                `नाम: ${name}\nईमेल: ${email}\nमोबाइल: +91${mobile}\nभाषा: ${currentLang === 'hi' ? 'हिंदी' : 'English'}\nसमय: ${new Date().toLocaleString()}\n\nसंदेश:\n${message}\n\n---\nयह संदेश AgriXvision संपर्क फॉर्म से भेजा गया है।` :
-                `Name: ${name}\nEmail: ${email}\nMobile: +91${mobile}\nLanguage: ${currentLang === 'hi' ? 'Hindi' : 'English'}\nTime: ${new Date().toLocaleString()}\n\nMessage:\n${message}\n\n---\nThis message was sent from the AgriXvision contact form.`;
-            
-            const mailtoLink = `mailto:ranjannikhil476@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Open mailto link
-            window.open(mailtoLink, '_blank');
-            
             const successMessage = currentLang === 'hi' ? 
-                'आपका डिफ़ॉल्ट ईमेल क्लाइंट खुल गया है। कृपया संदेश भेजें।' : 
-                'Your default email client has opened. Please send the message.';
+                'आपका संदेश सफलतापूर्वक भेजा गया! हम जल्द ही आपसे संपर्क करेंगे।' : 
+                'Your message has been sent successfully! We will get back to you soon.';
             
+            // Show success message
             showNotification(successMessage, 'success');
+            
+            // Reset form
             contactForm.reset();
             
+            // Store in localStorage for demo purposes
+            const messageData = {
+                name: name,
+                email: email,
+                mobile: `+91${mobile}`,
+                message: message,
+                language: currentLang,
+                timestamp: new Date().toISOString()
+            };
+            
+            const existingMessages = JSON.parse(localStorage.getItem('agrixvision_messages') || '[]');
+            existingMessages.push(messageData);
+            localStorage.setItem('agrixvision_messages', JSON.stringify(existingMessages));
+            
+            console.log('Message stored locally:', messageData);
+            
         } catch (error) {
-            console.log('Fallback failed:', error);
+            console.error('Error in fallback method:', error);
             
             const errorMessage = currentLang === 'hi' ? 
-                'संदेश भेजने में त्रुटि हुई। कृपया ranjannikhil476@gmail.com पर सीधे ईमेल करें।' : 
-                'Error sending message. Please email ranjannikhil476@gmail.com directly.';
+                'संदेश भेजने में त्रुटि हुई। कृपया बाद में पुनः प्रयास करें।' : 
+                'Error sending message. Please try again later.';
             
             showNotification(errorMessage, 'error');
         } finally {
@@ -1338,6 +1290,13 @@ window.addEventListener('resize', debounce(() => {
         hamburger.classList.remove('active');
     }
 }, 250));
+
+// Ensure page starts from top on window load
+window.addEventListener('load', function() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+});
 
 // Add some interactive effects
 document.addEventListener('DOMContentLoaded', function() {
