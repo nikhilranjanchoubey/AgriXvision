@@ -282,6 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initDemo();
     initContactForm();
     initAnimations();
+    initLogoClick();
 });
 
 // Navigation functionality
@@ -1245,6 +1246,25 @@ notificationStyle.textContent = `
     }
 `;
 document.head.appendChild(notificationStyle);
+
+// Logo click functionality
+function initLogoClick() {
+    const logo = document.querySelector('.nav-logo');
+    if (logo) {
+        logo.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Scroll to top of the page
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    }
+}
 
 // Animation on scroll
 function initAnimations() {
